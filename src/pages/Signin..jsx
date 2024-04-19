@@ -16,6 +16,8 @@ const Signin = () => {
   const [lessWord,setLessWord] = useState(false)
   const [takenUser,setTakenUser] = useState(false)
   const [correctPass,setCorrectPass] = useState(false)
+  const [passMatch,setPassMatch] = useState(true)
+  const [passAndCon,setPassAndCon] = useState(true)
 
  const signToLog = (e)=>{
   setCreate(prevstate => !prevstate)
@@ -23,6 +25,12 @@ const Signin = () => {
  }
  const verify = async (e)=>{
   e.preventDefault()
+  if(password !== confirmPassword){
+    console.log("not working")
+    setPassAndCon(false)
+  }else{
+
+  
   if(userName.length<5){
     setLessWord(true)
     
@@ -39,7 +47,7 @@ const Signin = () => {
     else{
       createAcc()
     }
-  });}
+  });}}
  }
  //create account
  const createAcc = (e)=>{
@@ -65,10 +73,10 @@ const Signin = () => {
   window.location.href = "/"
   alert('new account created')
  }
-
+//login
  const verifyLog = async (e)=>{
   e.preventDefault()
-  const response = await fetch("http://localhost:8000/accs")
+  const response = await fetch("http://localhost:3000/accounts")
   const result = await response.json()
   result.forEach(user => {
     
@@ -76,12 +84,14 @@ const Signin = () => {
       console.log("well done")
       window.location.href = "/"
       alert("you login was succsesful")
+    }else{
+      setPassMatch(false)
     }
   });
  }
 
 useEffect(()=>{
- setCreate(true)
+ setCreate(false)
 },[])
   return (
     <>
@@ -89,6 +99,7 @@ useEffect(()=>{
       <div className="min-h-screen bg-gray-900 text-white">
         <section className="w-4/5 h-auto bg-slate-800 ml-20  p-8 rounded-lg          shadow-lg">
           {create ? <div className="flex flex-col items-center justify-center h-full mt-32">
+          {!passAndCon ?<h3 className='absolute top-0 bg-red-100 text-red-600 text-xl'>The passwords doesn't match</h3>: null}
             <h2 className='absolute right-32 top-32 hover:cursor-pointer' onClick={signToLog}>Already have account?</h2>
             <h1 className="text-3xl font-bold mb-6">Create Account</h1>
             <form onSubmit={verify}
@@ -157,8 +168,9 @@ useEffect(()=>{
 //login
 
          <div className="flex flex-col items-center justify-center h-full mt-32">
+          {!passMatch ?<h3 className='absolute top-0 bg-red-100 text-red-600 text-xl'>The password and username doesn't match</h3>: null}
          <h2 className='absolute right-32 top-32 hover:cursor-pointer' onClick={signToLog}>Create account?</h2>
-         <h1 className="text-3xl font-bold mb-6">Create Account</h1>
+         <h1 className="text-3xl font-bold mb-6">Sign in</h1>
          <form onSubmit={verifyLog} 
          className="w-full max-w-sm">
            <div className="mb-4">

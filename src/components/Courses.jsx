@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import CourseConfirm from './CourseConfirm'
 import ClipLoader from 'react-spinners/ClipLoader'
+import { useLocation } from 'react-router-dom'
 
 
 const Courses = ({bere}) => {
   const [confirm,setConfirm] = useState(false)
   const [courses,setCourses] = useState([])
   const [loading,setLoading] = useState(true)
-
+  const location = useLocation()
+  let limit
+  if(location.pathname === '/'){
+    limit = 3
+  }else{
+    limit = 20
+  }
   const fetchData = async ()=>{
     try{
 
@@ -26,7 +33,7 @@ const Courses = ({bere}) => {
     <>
      <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {!loading ? courses.map((course) => (
+            {!loading ? courses.slice(0,limit).map((course) => (
                 <div key={course.key} className="bg-white rounded-lg shadow-md overflow-hidden">
                     <div className="p-4">
                         <h2 className="text-xl font-bold mb-2">{course.Name}</h2>

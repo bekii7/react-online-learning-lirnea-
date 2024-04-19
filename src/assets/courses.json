@@ -4,23 +4,32 @@
       "Name": "Introduction to Web Development",
       "Dis": "Learn the fundamentals of building websites.",
       "instructor": "Bereket Dereje",
-      "fee": "12.99"
+      "fee": "12.99",
+      "id": "a38c"
     },
     {
       "Name": "Data Science Essentials",
       "Dis": "Explore the world of data science and analytics.",
       "instructor": "chanyalew belacher",
-      "fee": "10.99"
+      "fee": "10.99",
+      "id": "aad6"
     },
     {
       "Name": "Digital Marketing Fundamentals",
       "Dis": "Learn key strategies for online marketing.",
       "instructor": "Yeabsira Bisrat",
-      "fee": "8.99"
+      "fee": "8.99",
+      "id": "aa59"
+    },
+    {
+      "id": "a1e5",
+      "Name": "intro to web dev",
+      "Dis": "introduction to web dev with beki",
+      "instructor": "bereket dereje",
+      "fee": "12"
     }
   ],
   "accounts": [
-    {},
     {
       "id": "c36d",
       "fName": "bereket",
