@@ -3,7 +3,10 @@ import {useState,useEffect} from 'react'
 import '../assets/body.css'; 
 import React from 'react';
 import Cliploader from 'react-spinners/ClipLoader'
+import { FaSalesforce } from 'react-icons/fa';
+import { NavLink, useLocation,useNavigation } from 'react-router-dom';
 
+let logged = false
 const Signin = () => {
  let [create,setCreate] = useState(false)
   const [firstName,setFirstName] = useState('')
@@ -21,7 +24,6 @@ const Signin = () => {
 
  const signToLog = (e)=>{
   setCreate(prevstate => !prevstate)
-
  }
  const verify = async (e)=>{
   e.preventDefault()
@@ -81,8 +83,8 @@ const Signin = () => {
   result.forEach(user => {
     
     if( passwordLog.toString() == user.pass && user.uName == userNameLog.toString()){
-      console.log("well done")
-      window.location.href = "/"
+      logged = true
+      window.location.pathname = ("/")
       alert("you login was succsesful")
     }else{
       setPassMatch(false)
@@ -188,7 +190,7 @@ useEffect(()=>{
              <label  className="block text-lg font-medium">Password </label>
              <input
                id="firstNamePass"
-               type="text"
+               type="password"
                autoComplete='off'
                className="mt-1 block text-black outline-none p-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg"
                value={passwordLog}
@@ -198,13 +200,14 @@ useEffect(()=>{
 
            
            <div className="flex justify-end">
-             <button
+             <NavLink
+             to='/'
                type="submit"
                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
              >
                {!loading ?"Log in":
                <Cliploader className="ml-[500px] mt-[100px]"/>}
-             </button>
+             </NavLink>
            </div>
          </form>
        </div> }
@@ -214,4 +217,4 @@ useEffect(()=>{
   );
 };
 
-export default Signin;
+export {Signin as default,  logged}
