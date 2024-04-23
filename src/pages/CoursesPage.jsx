@@ -8,7 +8,7 @@ const CoursesPage = () => {
   return (
     <>
       <HeroForCourses />
-      <Courses bere = {bere}/>
+      <Courses/>
     </>
   )
 }

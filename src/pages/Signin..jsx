@@ -173,7 +173,9 @@ useEffect(()=>{
           {!passMatch ?<h3 className='absolute top-0 bg-red-100 text-red-600 text-xl'>The password and username doesn't match</h3>: null}
          <h2 className='absolute right-32 top-32 hover:cursor-pointer' onClick={signToLog}>Create account?</h2>
          <h1 className="text-3xl font-bold mb-6">Sign in</h1>
-         <form onSubmit={verifyLog} 
+         <form onSubmit={()=>{
+          console.log('hi')
+         }} 
          className="w-full max-w-sm">
            <div className="mb-4">
              <label className="block text-lg font-medium">User Name</label>
@@ -204,6 +206,7 @@ useEffect(()=>{
              to='/'
                type="submit"
                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+               onClick={verifyLog}
              >
                {!loading ?"Log in":
                <Cliploader className="ml-[500px] mt-[100px]"/>}

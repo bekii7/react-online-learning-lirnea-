@@ -6,7 +6,7 @@ import { logged } from '../pages/Signin.'
 const Nav = () => {
   const [loggedIn,setLoggedIn] = useState(false)
 
-  console.log(logged)
+  /* console.log(logged) */
   return (
   <nav className="bg-blue-600 text-white py-4">
     <div className="container mx-auto flex justify-between items-center px-2">

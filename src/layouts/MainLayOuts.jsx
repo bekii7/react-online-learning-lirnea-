@@ -12,9 +12,7 @@ const MainLayout = () => {
   if(noNavigation.pathname == '/signin')
   {
     navbar = false
-  }else{
-    console.log('no')
-  } 
+  }
 
   
   return (

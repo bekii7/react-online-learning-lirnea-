@@ -1,0 +1,88 @@
+{
+  "courses": [
+    {
+      "Name": "Introduction to Web Development",
+      "Dis": "Learn the fundamentals of building websites.",
+      "instructor": "Bereket Dereje",
+      "fee": "12.99",
+      "id": "a38c"
+    },
+    {
+      "Name": "Data Science Essentials",
+      "Dis": "Explore the world of data science and analytics.",
+      "instructor": "chanyalew belacher",
+      "fee": "10.99",
+      "id": "aad6"
+    },
+    {
+      "Name": "Digital Marketing Fundamentals",
+      "Dis": "Learn key strategies for online marketing.",
+      "instructor": "Yeabsira Bisrat",
+      "fee": "8.99",
+      "id": "aa59"
+    },
+    {
+      "id": "a1e5",
+      "Name": "Intro to Web Dev",
+      "Dis": "introduction to web dev with beki",
+      "instructor": "bereket dereje",
+      "fee": "12"
+    },
+    {
+      "Name": "Web Development Bootcamp",
+      "Dis": "Learn modern web development techniques and frameworks.",
+      "instructor": "John Doe",
+      "fee": 199.99,
+      "id": "f0ed"
+    },
+    {
+      "Name": "Data Science Fundamentals",
+      "Dis": "Introduction to data analysis and machine learning.",
+      "instructor": "Jane Smith",
+      "fee": 149.99,
+      "id": "086e"
+    },
+    {
+      "Name": "Mobile App Development",
+      "Dis": "Build mobile apps using React Native and Swift.",
+      "instructor": "Mike Johnson",
+      "fee": 219.99,
+      "id": "0524"
+    },
+    {
+      "Name": "Graphic Design Masterclass",
+      "Dis": "Explore the principles of graphic design and digital art.",
+      "instructor": "Emily Brown",
+      "fee": 179.99,
+      "id": "bee6"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "c36d",
+      "fName": "bereket",
+      "uName": "bereket123",
+      "pass": "bereket123"
+    }
+  ],
+  "userData": [
+    {
+      "bereket123": 
+        {
+        "wishlist": [
+          {
+            "id": "398f",
+            "userName": "bereket77",
+            "course": "a38c"
+          },
+          {
+            "id": "15f4",
+            "userName": "bereket77",
+            "course": "a38c"
+          }
+        ]
+      }
+  
+      
+    }]
+}

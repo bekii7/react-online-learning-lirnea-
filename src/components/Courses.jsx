@@ -2,33 +2,52 @@ import React, { useEffect, useState } from 'react'
 import CourseConfirm from './CourseConfirm'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { useLocation } from 'react-router-dom'
+import api from '../assets/api'
 
-
-const Courses = ({bere}) => {
+const user = "bereket123"
+const Courses = () => {
   const [confirm,setConfirm] = useState(false)
   const [courses,setCourses] = useState([])
   const [loading,setLoading] = useState(true)
+  const [wishlist,setWishlist] = useState('')
+  const [limit,setLimit] = useState(3)
   const location = useLocation()
-  let limit
-  if(location.pathname === '/'){
-    limit = 3
-  }else{
-    limit = 20
+  
+  
+  useEffect(()=>{
+    const fetchApi = async ()=>{
+      try{
+        const response = await api.get('/courses')
+        setCourses(response.data)
+        setLoading(false)
+        const dataLength = response.data.length
+        if(location.pathname === '/'){
+          pass
+        }else{
+            setLimit(dataLength)
+        }
+      } catch(err){
+        console.log(err)
+      }
   }
-  const fetchData = async ()=>{
-    try{
+  fetchApi()
+  },[])
 
-      const result = await fetch("/api/courses")
-      const data = await result.json()
-      setCourses(data)
-      setLoading(false)
+  
+  const setSeteWish = (wish)=>{
+    const wishJson = {
+      userName: 'bereket77',
+      courseId: wish
     }
-    catch(error){
-      console.log(error)
-    }
+  
+  
+ fetch(`http://localhost:3000/userData/bereket123`,{
+      method: "POST",
+      headers: {"content-type":"application/json"},
+      body: JSON.stringify(wishJson)
+    })
   }
-  fetchData()
-  /* console.log(bere) */
+
   return (
     <>
      <div className="container mx-auto px-4 py-8">
@@ -47,7 +66,12 @@ const Courses = ({bere}) => {
                         >
                             Enroll Now
                         </button>
-                        <button className='bg-neutral-200 shadow-sm rounded-md w-20 ml-4 py-2 px-2'>
+                        <button 
+                        onClick={()=>{
+                          const wish = course.id
+                          setSeteWish(wish)
+                          }}
+                        className='bg-neutral-200 shadow-sm rounded-md w-20 ml-4 py-2 px-2'>
                             Wish list
                         </button>
                     </div>

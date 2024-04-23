@@ -7,6 +7,7 @@ import CourseConfirm from './components/CourseConfirm'
 import Signin from './pages/Signin.'
 import AddCoursePage from './pages/AddCoursePage'
 import ProfilePage from './pages/ProfilePage'
+import Enrolledpage from './pages/Enrolledpage'
 
 function App() {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ function App() {
           <Route path ='/signin' element={<Signin />}/>
           <Route path ='/AddCourses' element={<AddCoursePage />}/>
           <Route path ='/profile' element={<ProfilePage/>}/>
+          <Route path ='/Enrolled' element={<Enrolledpage/>}/>
         </Route>
       )
     )
