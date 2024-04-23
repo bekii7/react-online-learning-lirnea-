@@ -65,24 +65,18 @@
       "pass": "bereket123"
     }
   ],
-  "userData": [
+  "wishList": [
     {
-      "bereket123": 
-        {
-        "wishlist": [
-          {
-            "id": "398f",
-            "userName": "bereket77",
-            "course": "a38c"
-          },
-          {
-            "id": "15f4",
-            "userName": "bereket77",
-            "course": "a38c"
-          }
-        ]
+      "id": "0b34",
+      "wishJson": {
+        "userName": "bereket77",
+        "courseId": "a38c"
       }
-  
-      
-    }]
+    },
+    {
+      "id": "9884",
+      "userName": "bereket77",
+      "courseId": "a38c"
+    }
+  ]
 }

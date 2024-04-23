@@ -33,21 +33,24 @@ const Courses = () => {
   fetchApi()
   },[])
 
-  
+  const addWish = async (wishJson)=>{
+  try{
+    const post = await api.post('/wishList',
+      wishJson
+    )
+  }catch(error){
+    console.log(error)
+  }
+}
   const setSeteWish = (wish)=>{
     const wishJson = {
       userName: 'bereket77',
       courseId: wish
     }
+    addWish(wishJson)
   
-  
- fetch(`http://localhost:3000/userData/bereket123`,{
-      method: "POST",
-      headers: {"content-type":"application/json"},
-      body: JSON.stringify(wishJson)
-    })
-  }
 
+  }
   return (
     <>
      <div className="container mx-auto px-4 py-8">
