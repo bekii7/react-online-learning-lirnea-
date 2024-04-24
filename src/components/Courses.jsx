@@ -21,10 +21,8 @@ const Courses = () => {
         setCourses(response.data)
         setLoading(false)
         const dataLength = response.data.length
-        if(location.pathname === '/'){
-          pass
-        }else{
-            setLimit(dataLength)
+        if(location.pathname !== '/'){
+          setLimit(dataLength)
         }
       } catch(err){
         console.log(err)

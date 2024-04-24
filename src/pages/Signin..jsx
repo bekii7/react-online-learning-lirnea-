@@ -5,9 +5,10 @@ import React from 'react';
 import Cliploader from 'react-spinners/ClipLoader'
 import { FaSalesforce } from 'react-icons/fa';
 import { NavLink, useLocation,useNavigation } from 'react-router-dom';
+import api from '../assets/api';
 
 let logged = false
-const Signin = () => {
+const Signin = ({logged}) => {
  let [create,setCreate] = useState(false)
   const [firstName,setFirstName] = useState('')
   const [userName,setUserName] = useState('')
@@ -83,15 +84,24 @@ const Signin = () => {
   result.forEach(user => {
     
     if( passwordLog.toString() == user.pass && user.uName == userNameLog.toString()){
-      logged = true
       window.location.pathname = ("/")
       alert("you login was succsesful")
+      setLogTrue()
     }else{
       setPassMatch(false)
     }
   });
  }
+ const setLogTrue = async ()=>{
+  try{
 
+    await api.put('/logged', 
+    {logged: true});
+      console.log(logged)
+  }catch(err){
+    console.log(err)
+  }
+  }
 useEffect(()=>{
  setCreate(false)
 },[])

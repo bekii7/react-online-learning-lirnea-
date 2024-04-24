@@ -1,11 +1,11 @@
 import React from 'react'
 import { Outlet,useLocation } from 'react-router-dom'
-import { useState } from 'react'
 import {Nav} from '../components/Nav'
 import Footer from '../components/Footer'
 
 
-const MainLayout = () => {
+const MainLayout = ({logged}) => {
+  console.log(logged)
   const noNavigation = useLocation()
   
   let navbar= true
@@ -19,7 +19,7 @@ const MainLayout = () => {
     <div>
     {navbar?
     <>
-    <Nav />
+    <Nav logged={logged}/>
     <Outlet/>
      <Footer/>
      </> :

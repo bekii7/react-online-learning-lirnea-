@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import api from '../assets/api'
 
 const ProfileSetting = () => {
   const [image,setImage] = useState(null)
@@ -6,6 +7,10 @@ const ProfileSetting = () => {
   const handleSubmit =(e)=>{
     e.preventDefault()
     console.log(image)
+
+    const setLogOut = ()=>{
+      console.log("hello")
+    }
   }
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
@@ -58,6 +63,16 @@ const ProfileSetting = () => {
         setImage(e.target.files[0])
       }}/>
     </form>
+      <button className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-10' onClick={async ()=>{
+        try{
+          await api.put('/logged', 
+          {logged: false});
+            console.log(logged)
+        }catch(err){
+          console.log(err)
+        }
+        
+      }}>logout</button>
   </div>
   )
 }

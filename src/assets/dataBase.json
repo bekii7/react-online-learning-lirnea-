@@ -1,4 +1,7 @@
 {
+  "logged": {
+    "logged": true
+  },
   "courses": [
     {
       "Name": "Introduction to Web Development",

@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { NavLink} from 'react-router-dom'
 import { BsPerson } from 'react-icons/bs'
-import { logged } from '../pages/Signin.'
+import api from '../assets/api'
  
-const Nav = () => {
-  const [loggedIn,setLoggedIn] = useState(false)
 
+const Nav = () => {
+  const [logged,setLogged] = useState(false)
+  useEffect(()=>{
+    const fetch = async ()=>{
+      const Log = await api.get('/logged')
+      setLogged(Log.data.logged)
+      console.log(logged)
+    }
+    fetch()
+  },[logged])
+  
   /* console.log(logged) */
   return (
   <nav className="bg-blue-600 text-white py-4">
@@ -15,9 +24,11 @@ const Nav = () => {
             <NavLink to='/' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"} onClick={active("Home")}>Home</NavLink>
             <NavLink to='/courses' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"}onClick={active("Courses")}>Courses</NavLink>
             <NavLink to='/AddCourses' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"} onClick={active("Add_courses")}>Add Courses</NavLink >
-              {!logged ?<NavLink to="/signin"><BsPerson  className='inline-block text-base text-white font-bold h-8 pt-1 ml-2 mr-2 bg-blue-800 w-10 h-10 rounded hover:cursor-pointer'/> </NavLink>:
+              {logged ?<NavLink to="/profile">
+                <p className='inline-block text-base text-white font-bold h-8 pt-1 ml-2 p-3 bg-blue-800 w-10 h-10 rounded hover:cursor-pointer'>B</p>
+                 </NavLink>:
               //change the logged in letter
-              <NavLink to="/profile"></NavLink>}
+              <NavLink to="/signin"><BsPerson  className='inline-block text-base text-white font-bold h-8 pt-1 ml-2 mr-2 bg-blue-800 w-10 h-10 rounded hover:cursor-pointer'/></NavLink>}
             
             <NavLink to='/Enrolled' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"} onClick={active("Enrolled")}>Enrolled</NavLink>
         </div>
