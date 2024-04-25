@@ -1,6 +1,7 @@
 {
-  "logged": {
-    "logged": true
+  "log": {
+    "logged": true,
+    "userName": "bereket123"
   },
   "courses": [
     {

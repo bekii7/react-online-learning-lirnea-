@@ -1,30 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet,useLocation } from 'react-router-dom'
 import {Nav} from '../components/Nav'
 import Footer from '../components/Footer'
+import api from '../assets/api'
 
 
-const MainLayout = ({logged}) => {
-  console.log(logged)
-  const noNavigation = useLocation()
+const MainLayout = () => {
+  const location = useLocation()
+  const [navScroll,setNavScroll] = useState(false)
+  const [navbar,setNavbar] = useState(true)
+  const [logged,setLogged] = useState(null)
+  const [dataFetched,setDataFetched] = useState(false)
+
+  useEffect( ()=>{
+
+    const fetch = async ()=>{
+      const Log = await api.get('/log')
+      setLogged(Log.data)
+      console.log(Log.data)
+      setDataFetched(true)
+    
+    }
+    fetch()
+  },[location.pathname])
   
-  let navbar= true
-  if(noNavigation.pathname == '/signin')
-  {
-    navbar = false
-  }
+  useEffect(()=>{
+    if(location.pathname == '/signin')
+    {
+      console.log('hello')
+      setNavbar(false)
+    } 
+    return ()=>{
+      if(location.pathname == '/signin')
+      {
+        console.log('hello')
+        setNavbar(true)
+      } 
+    }
+    
+  },[location.pathname])
+
+
 
   
   return (
     <div>
-    {navbar?
+
+    {dataFetched ?navbar?
     <>
-    <Nav logged={logged}/>
-    <Outlet/>
+    <Nav log={logged} />
+    <Outlet logged={logged}/>
      <Footer/>
      </> :
-     <Outlet/>
-     }
+     <Outlet fetch={logged}/>
+    :null }
     
 
      

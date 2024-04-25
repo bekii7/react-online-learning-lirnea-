@@ -1,21 +1,17 @@
 import React, { useState,useEffect } from 'react'
-import { NavLink} from 'react-router-dom'
+import { NavLink,useLocation} from 'react-router-dom'
 import { BsPerson } from 'react-icons/bs'
-import api from '../assets/api'
  
 
-const Nav = () => {
-  const [logged,setLogged] = useState(false)
-  useEffect(()=>{
-    const fetch = async ()=>{
-      const Log = await api.get('/logged')
-      setLogged(Log.data.logged)
-      console.log(logged)
-    }
-    fetch()
-  },[logged])
+const Nav = ({log}) => {
+
+  const {logged,userName} = log
+  console.log(log)
   
-  /* console.log(logged) */
+  
+   const login = logged
+   const user = userName 
+  
   return (
   <nav className="bg-blue-600 text-white py-4">
     <div className="container mx-auto flex justify-between items-center px-2">
@@ -24,8 +20,8 @@ const Nav = () => {
             <NavLink to='/' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"} onClick={active("Home")}>Home</NavLink>
             <NavLink to='/courses' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"}onClick={active("Courses")}>Courses</NavLink>
             <NavLink to='/AddCourses' className={({isActive})=> isActive ?"text-white hover:text-white hover:cursor-pointer  mx-2" :"text-gray-400 hover:text-white hover:cursor-pointer  mx-2"} onClick={active("Add_courses")}>Add Courses</NavLink >
-              {logged ?<NavLink to="/profile">
-                <p className='inline-block text-base text-white font-bold h-8 pt-1 ml-2 p-3 bg-blue-800 w-10 h-10 rounded hover:cursor-pointer'>B</p>
+              {login ?<NavLink to="/profile">
+                <p className='inline-block text-base text-white font-bold h-8 pt-1 ml-2 p-3 bg-blue-800 w-10 h-10 rounded hover:cursor-pointer'> { user.charAt(0).toUpperCase() } </p>
                  </NavLink>:
               //change the logged in letter
               <NavLink to="/signin"><BsPerson  className='inline-block text-base text-white font-bold h-8 pt-1 ml-2 mr-2 bg-blue-800 w-10 h-10 rounded hover:cursor-pointer'/></NavLink>}

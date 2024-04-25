@@ -7,8 +7,8 @@ import { FaSalesforce } from 'react-icons/fa';
 import { NavLink, useLocation,useNavigation } from 'react-router-dom';
 import api from '../assets/api';
 
-let logged = false
-const Signin = ({logged}) => {
+
+const Signin = () => {
  let [create,setCreate] = useState(false)
   const [firstName,setFirstName] = useState('')
   const [userName,setUserName] = useState('')
@@ -68,6 +68,7 @@ const Signin = ({logged}) => {
   }).then(()=>{
      console.log('new acc added')
     setloading(false)
+    setLogTrue(password)
   }
    
   ).catch((error)=>{
@@ -86,17 +87,19 @@ const Signin = ({logged}) => {
     if( passwordLog.toString() == user.pass && user.uName == userNameLog.toString()){
       window.location.pathname = ("/")
       alert("you login was succsesful")
-      setLogTrue()
+      setLogTrue(userNameLog)
     }else{
       setPassMatch(false)
     }
   });
  }
- const setLogTrue = async ()=>{
+ const setLogTrue = async (userName)=>{
   try{
 
-    await api.put('/logged', 
-    {logged: true});
+    await api.put('/log', 
+    {logged: true,
+      userName:userName
+    });
       console.log(logged)
   }catch(err){
     console.log(err)
@@ -230,4 +233,4 @@ useEffect(()=>{
   );
 };
 
-export {Signin as default,  logged}
+export {Signin as default}
