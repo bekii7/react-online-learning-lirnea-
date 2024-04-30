@@ -17,7 +17,6 @@ const MainLayout = () => {
     const fetch = async ()=>{
       const Log = await api.get('/log')
       setLogged(Log.data)
-      console.log(Log.data)
       setDataFetched(true)
     
     }
@@ -49,7 +48,7 @@ const MainLayout = () => {
     {dataFetched ?navbar?
     <>
     <Nav log={logged} />
-    <Outlet logged={logged}/>
+    <Outlet context={logged}/>
      <Footer/>
      </> :
      <Outlet fetch={logged}/>

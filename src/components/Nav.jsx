@@ -6,7 +6,6 @@ import { BsPerson } from 'react-icons/bs'
 const Nav = ({log}) => {
 
   const {logged,userName} = log
-  console.log(log)
   
   
    const login = logged

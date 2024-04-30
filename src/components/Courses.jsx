@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import CourseConfirm from './CourseConfirm'
 import ClipLoader from 'react-spinners/ClipLoader'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useOutletContext } from 'react-router-dom'
 import api from '../assets/api'
 
-const user = "bereket123"
+
 const Courses = () => {
   const [confirm,setConfirm] = useState(false)
   const [courses,setCourses] = useState([])
   const [loading,setLoading] = useState(true)
-  const [wishlist,setWishlist] = useState('')
   const [limit,setLimit] = useState(3)
+  const [propCourse,setPropCourse] = useState()
   const location = useLocation()
-  
+  const {logged,userName} = useOutletContext()
   
   useEffect(()=>{
     const fetchApi = async ()=>{
@@ -31,6 +31,7 @@ const Courses = () => {
   fetchApi()
   },[])
 
+//wishlist
   const addWish = async (wishJson)=>{
   try{
     const post = await api.post('/wishList',
@@ -42,13 +43,20 @@ const Courses = () => {
 }
   const setSeteWish = (wish)=>{
     const wishJson = {
-      userName: 'bereket77',
+      userName: userName,
       courseId: wish
     }
     addWish(wishJson)
-  
-
   }
+//course confirm 
+  const enrolledCourse = (course)=>{
+    setConfirm(true)
+    setPropCourse(course)
+    return course
+  }
+
+
+
   return (
     <>
      <div className="container mx-auto px-4 py-8">
@@ -63,41 +71,30 @@ const Courses = () => {
                         <p className='mb-3 text-gray-600'>Fee:$<span>{course.fee}</span></p>
                         <button
                             className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-full ml-8 lg:ml-[150px]"
-                            onClick={() => setConfirm(true)}
+                            onClick={()=> enrolledCourse(course)}
                         >
                             Enroll Now
                         </button>
+                        
                         <button 
                         onClick={()=>{
                           const wish = course.id
                           setSeteWish(wish)
                           }}
-                        className='bg-neutral-200 shadow-sm rounded-md w-20 ml-4 py-2 px-2'>
+                        className='bg-neutral-200 shadow-sm rounded-md w-20 ml-12 mt-2 py-2 px-2'>
                             Wish list
                         </button>
                     </div>
                 </div>
-            )) : <ClipLoader className='ml-96 w-96 h-96 mt-8'/>}
+            )) : <ClipLoader className='ml-96 w-96 h-96 mt-8'/>
+            
+          }
         </div>
+        {confirm ? <CourseConfirm course = {propCourse}/> : null}
     </div>
-    {confirm && <CourseConfirm />} {/* Render CourseConfirm component conditionally */}
 </>
   )
 }
-const loadData = ()=>{
-  const data = {
-    courseName:'Introduction to Web Development',
-    courseDis: 'Learn the fundamentals of building websites.',
-    instructor: 'Bereket Dereje',
-    fee: '$12.99'
-}
 
-return data
-}
 
-/* const noNav = ()=>{
-  const noNavigation = true
-  return noNavigation
-} */
-
-export {Courses as default,loadData}
+export {Courses as default}

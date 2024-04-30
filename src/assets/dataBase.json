@@ -14,7 +14,7 @@
     {
       "Name": "Data Science Essentials",
       "Dis": "Explore the world of data science and analytics.",
-      "instructor": "chanyalew belacher",
+      "instructor": "chanyalew belachew",
       "fee": "10.99",
       "id": "aad6"
     },
@@ -81,6 +81,31 @@
       "id": "9884",
       "userName": "bereket77",
       "courseId": "a38c"
+    },
+    {
+      "id": "ec40",
+      "userName": "bereket123",
+      "courseId": "aad6"
+    },
+    {
+      "id": "95a8",
+      "userName": "bereket123",
+      "courseId": "0524"
+    },
+    {
+      "id": "1c1c",
+      "userName": "bereket123",
+      "courseId": "086e"
+    },
+    {
+      "id": "67e8",
+      "userName": "bereket123",
+      "courseId": "f0ed"
+    }
+  ],
+  "enrolled": [
+    {
+      "id": "bbe1"
     }
   ]
 }

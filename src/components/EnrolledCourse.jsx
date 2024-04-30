@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import api from '../assets/api'
 
 const EnrolledCourse = () => {
+  useEffect(()=>{
+    const fetch = async ()=>{
+      const data = api.get('/enrolled')
+    }
+  },[])
   return (
     <div >
         <div className="bg-blue-800 p-4 rounded shadow-md mt-4">
