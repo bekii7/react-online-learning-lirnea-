@@ -5,6 +5,8 @@ import api from '../assets/api'
 
 const CoursesPage = () => {
   const [logged,setLogged] = useState(false)
+  const [search,setSearch] = useState(null)
+  const [send,setSend] = useState(false)
   useEffect(()=>{
     const fetch = async ()=>{
       const Log = await api.get('/logged')
@@ -12,11 +14,21 @@ const CoursesPage = () => {
     }
     fetch()
   },[])
+
+  const getData = (item)=>{
+
+    setSearch(item)
+    setSend(true)
+  }
   return (
     <>
-      <HeroForCourses />
-      <Courses/>
-    </>
+      <HeroForCourses getData = {getData}/>
+    {!send ? 
+      <Courses /> :
+      <Courses search={search}/> 
+      
+    }
+      </>
   )
 }
 

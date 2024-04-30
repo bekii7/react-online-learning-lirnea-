@@ -4,22 +4,25 @@ import ClipLoader from 'react-spinners/ClipLoader'
 import { useLocation, useOutletContext } from 'react-router-dom'
 import api from '../assets/api'
 
-
-const Courses = () => {
+const Courses = ({search}) => {
   const [confirm,setConfirm] = useState(false)
-  const [courses,setCourses] = useState([])
+  let [courses,setCourses] = useState([])
   const [loading,setLoading] = useState(true)
   const [limit,setLimit] = useState(3)
   const [propCourse,setPropCourse] = useState()
+  const [searchCourse,setSearchCourse] = useState()
   const location = useLocation()
   const {logged,userName} = useOutletContext()
-  
+
+   
+console.log(courses)
   useEffect(()=>{
     const fetchApi = async ()=>{
       try{
         const response = await api.get('/courses')
         setCourses(response.data)
         setLoading(false)
+        console.log(response.data)
         const dataLength = response.data.length
         if(location.pathname !== '/'){
           setLimit(dataLength)
@@ -54,8 +57,14 @@ const Courses = () => {
     setPropCourse(course)
     return course
   }
-
-
+  const go = (search)=>{
+    
+    courses = search 
+  console.log('hello')}
+  if(search){
+    go(search)
+    
+  }
 
   return (
     <>

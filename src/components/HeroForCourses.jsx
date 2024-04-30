@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import api from '../assets/api'
-const HeroForCourses = () => {
+import Courses from './Courses'
+const HeroForCourses = ({getData}) => {
+  const courseList = []
+
 
   const searchCourse = async (value)=>{
     const search = await api.get('/courses')
     const items = search.data
     items.forEach(item=>{
-      if(value !== '' && item.instructor.includes(value)){
-          console.log(item.instructor) 
+      if( item.instructor.toLowerCase().includes(value)){
+          courseList.push(item)
+          getData(courseList)
       }
     })
   }
@@ -25,8 +29,9 @@ const HeroForCourses = () => {
         </button>
           
       </div>
+
     </div>
   )
 }
 
-export default HeroForCourses
+export{ HeroForCourses as default}
