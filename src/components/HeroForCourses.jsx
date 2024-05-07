@@ -10,7 +10,7 @@ const HeroForCourses = ({getData}) => {
     const search = await api.get('/courses')
     const items = search.data
     items.forEach(item=>{
-      if( item.instructor.toLowerCase().includes(value)){
+      if( item.instructor.toLowerCase().includes(value)|| item.Name.toLowerCase().includes(value)){
           courseList.push(item)
           getData(courseList)
       }

@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState ,useRef} from 'react'
 import api from '../assets/api'
+import {FaEye} from "react-icons/fa"
 
 const ProfileSetting = () => {
   const [image,setImage] = useState(null)
-
+  const [password,setPassword] = useState("password")
+  const input = useRef(null)
+  console.log(input)
   const handleSubmit =(e)=>{
     e.preventDefault()
     console.log(image)
+  }
+  const passSet = ()=>{
+    if(password == "password"){
+      setPassword("text")
+    }else{
+      setPassword("password")
+    }
   }
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
@@ -38,8 +48,9 @@ const ProfileSetting = () => {
       </div>
       <div className="mb-4">
         <label  className="block text-sm font-medium text-gray-700">Password</label>
+        <div className='flex'>
         <input
-          type="password"
+          type= {password}
           id="password"
           name="password"
           value=/* {profileData.password} */"bereket123"
@@ -47,6 +58,10 @@ const ProfileSetting = () => {
           className="text-black mt-1 block w-full p-1 border-gray-300 rounded-md shadow-sm outline-none sm:text-lg "
           required
         />
+        <FaEye className='mt-4' onClick={()=>passSet()
+
+        }/> 
+        </div>
       </div>
       <button
         type="submit"
@@ -57,7 +72,7 @@ const ProfileSetting = () => {
       <label className="block text-sm font-medium text-gray-700 mt-4">Upload Profile Image</label>
       <input type='file' className='mt-4' onChange={(e)=>{
         setImage(e.target.files[0])
-      }}/>
+      }} ref={input}/>
     </form>
       <button className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-10' onClick={async ()=>{
         try{
